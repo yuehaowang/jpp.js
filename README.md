@@ -15,7 +15,7 @@ $ git clone git@github.com:yuehaowang/jpp.js.git
 
 **Without Git:**
 
-The url to download the library is: []()
+The url to download the library is: [https://github.com/.../master.zip](https://github.com/yuehaowang/jpp.js/archive/master.zip)
 
 Second, copy jpp-a.b.c.js to your project directory and import the js file, then you can use jpp. It's so easy, isn't it?
 
@@ -175,3 +175,8 @@ If you find the library has some bugs or you have any questions or advice, pleas
 > My email: wangyuehao1999@gmail.com
 > 
 > My twitter: [twitter.com/yuehaowang](twitter.com/yuehaowang)
+
+## Changelog
+
+### version 0.1.0
+1. Add `jpp.class` function to create a powerful class (with private & protected properties and methods).
