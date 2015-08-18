@@ -2,7 +2,7 @@
 --------
 
 ## What's jpp.js
-Jpp.js is a library to extend some useful functions for JavaScript. The meaning of jpp is JavaScript plus plus.
+Jpp.js is a library to extend some useful functions such as create a powerful `class` (with private & protected properties and methods) for JavaScript. The meaning of jpp is JavaScript plus plus. 
 
 ## How to use jpp.js
 First, you need to get jpp.js.
@@ -153,9 +153,9 @@ As `Object.defineProperty` is used in jpp.js, so there are some problems about c
 
 ***Desktop***
 
-| Firefox | Google Chrome | IE | Opera | Safari |
-| ------- | ------------- | -- | ----- | ------ |
-| 4.0     | 5             | 9  | 11.6  | 5.1    |
+| Firefox | Google Chrome | Internet Explorer | Opera | Safari |
+| ------- | ------------- | ----------------- | ----- | ------ |
+| 4.0     | 5             | 9                 | 11.6  | 5.1    |
 
 ***Mobile***
 
@@ -164,7 +164,7 @@ As `Object.defineProperty` is used in jpp.js, so there are some problems about c
 | 4.0            | Yes     | 9         | 11.5         | Yes           |
 
 
-*From:* [https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty#Browser_compatibility](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty#Browser_compatibility)
+***From:*** [https://developer.mozilla.org/.../defineProperty#Browser_compatibility](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty#Browser_compatibility)
 
 ## Documentation
 The documentation will be released when the formal version is released. Stay tuned!~
@@ -173,5 +173,5 @@ The documentation will be released when the formal version is released. Stay tun
 If you find the library has some bugs or you have any questions or advice, please let me know:
 
 > My email: wangyuehao1999@gmail.com
-
+> 
 > My twitter: [twitter.com/yuehaowang](twitter.com/yuehaowang)
