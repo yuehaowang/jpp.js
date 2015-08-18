@@ -153,15 +153,16 @@ As `Object.defineProperty` is used in jpp.js, so there are some problems about c
 
 ***Desktop***
 
+| Firefox | Google Chrome | IE | Opera | Safari |
+| ------- | ------------- | -- | ----- | ------ |
+| 4.0     | 5             | 9  | 11.6  | 5.1    |
+
+***Mobile***
+
 | Firefox Mobile | Android | IE Mobile | Opera Mobile | Safari Mobile |
 | -------------- | ------- | --------- | ------------ | ------------- |
 | 4.0            | Yes     | 9         | 11.5         | Yes           |
 
-***Mobile***
-
-| Firefox | Google Chrome | IE | Opera | Safari |
-| ------- | ------------- | -- | ----- | ------ |
-| 4.0     | 5             | 9  | 11.6  | 5.1    |
 
 *From:* [https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty#Browser_compatibility](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty#Browser_compatibility)
 
@@ -172,4 +173,5 @@ The documentation will be released when the formal version is released. Stay tun
 If you find the library has some bugs or you have any questions or advice, please let me know:
 
 > My email: wangyuehao1999@gmail.com
+
 > My twitter: [twitter.com/yuehaowang](twitter.com/yuehaowang)
