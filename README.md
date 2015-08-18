@@ -180,3 +180,5 @@ If you find the library has some bugs or you have any questions or advice, pleas
 
 ### version 0.1.0
 1. Add `jpp.class` function to create a powerful class (with private & protected properties and methods).
+2. Choose MIT License for jpp.js.
+3. Write README.md for getting started.
