@@ -55,6 +55,7 @@ var jpp = {};
 			pri = list["private"],
 			pro = list["protected"],
 			pub = list["public"],
+			sta = list["static"],
 			propertiesAndMethodsList = [];
 
 			if (ext) {
@@ -100,6 +101,11 @@ var jpp = {};
 					propertiesAndMethodsList.push({name : n, content : pub[k]});
 				}
 			}
+			if (sta) {
+				for (k in sta) {
+					Class[k] = sta[k];
+				}
+			}
 
 			if (typeof s._jpp_propertyAndMethodStorage == "undefined" || !s._jpp_propertyAndMethodStorage) {
 				s._jpp_propertyAndMethodStorage = {};
@@ -138,7 +144,7 @@ var jpp = {};
 					Object.defineProperty(s, o.name, {
 						get : function () {
 							if (typeof s._jpp_isCalledInClass == "undefined" || !s._jpp_isCalledInClass) {
-								throw name + " is " + flag + ", you cannot get it out of the class."
+								throw new RangeError(name + " is " + flag + ", you cannot get it out of the class.");
 							}
 
 							return s._jpp_propertyAndMethodStorage[name];
@@ -146,7 +152,7 @@ var jpp = {};
 
 						set : function (v) {
 							if (typeof s._jpp_isCalledInClass == "undefined" || !s._jpp_isCalledInClass) {
-								throw name + " is " + flag + ", you cannot set it out of the class."
+								throw new RangeError(name + " is " + flag + ", you cannot set it out of the class.");
 							}
 
 							o.name = v;
