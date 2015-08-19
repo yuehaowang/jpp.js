@@ -2,7 +2,7 @@
 --------
 
 ## What's jpp.js
-Jpp.js is a library to extend some useful functions such as create a powerful `class` (with private & protected properties and methods) for JavaScript. The meaning of jpp is JavaScript plus plus. 
+Jpp.js is a library to extend some useful functions such as create a powerful `class` (with `private` & `protected` & `public` & `static` properties and methods) for JavaScript. The meaning of jpp is JavaScript plus plus. 
 
 ## How to use jpp.js
 First, you need to get jpp.js.
@@ -78,27 +78,23 @@ var People = jpp.class({
 	}
 });
 
-function testPeople () {
-	var peter = new People("Peter Wong", 543232123565);
-	peter.occupation = People.OCCUPATION_PROGRAMMER;
-	
-	peter.setBirthday("19980727");
+var peter = new People("Peter Wong", 543232123565);
+peter.occupation = People.OCCUPATION_PROGRAMMER;
 
-	// result: Peter
-	alert(peter.firstName);
-	// result: 19990727
-	alert(peter.getBirthday());
-	// result: 51092028
-	alert(peter.askForId());
-	// result: null
-	alert(peter.findHobby());
-	// result: programmer
-	alert(peter.occupation);
-	// error
-	alert(peter.id);
-}
+peter.setBirthday("19980727");
 
-testPeople();
+// result: Peter
+alert(peter.firstName);
+// result: 19990727
+alert(peter.getBirthday());
+// result: 51092028
+alert(peter.askForId());
+// result: null
+alert(peter.findHobby());
+// result: programmer
+alert(peter.occupation);
+// error
+alert(peter.id);
 ```
 
 ## Browser compatibility
@@ -116,7 +112,6 @@ As `Object.defineProperty` is used in jpp.js, so there are some problems about c
 | -------------- | ------- | --------- | ------------ | ------------- |
 | 4.0            | Yes     | 9         | 11.5         | Yes           |
 
-
 ***From:*** [https://developer.mozilla.org/.../defineProperty#Browser_compatibility](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty#Browser_compatibility)
 
 ## Documentation
@@ -125,15 +120,20 @@ The documentation will be released when the formal version is released. Stay tun
 ## Support
 If you find the library has some bugs or you have any questions or advice, please let me know:
 
-> My email: wangyuehao1999@gmail.com
+> **My email:** wangyuehao1999@gmail.com
 > 
-> My twitter: [twitter.com/yuehaowang](twitter.com/yuehaowang)
+> **My twitter:** [twitter.com/yuehaowang](twitter.com/yuehaowang)
 
 ## Changelog
 
+### version 0.2.0
+1. Added `jpp.Detector` function to determine if a object is available or if a object is a instance of the class or a object's type is one of basic type (`string`, `object`, `function`, `number`, `boolean`, etc).
+2. Added `super` method for classes which are created by `jpp.class`. Using this method will call base class' constructor.
+3. Improvement: `extends` property is used to be a `Object` containing `baseClass` property and `arguments` property but now this property is given the base class.
+
 ### version 0.1.1
 1. Added `static` property for `jpp.class` to add static properties or methods to classes.
-3. Improvement: throw `RangeError` when you get/set private or protected properties and methods out of the class instead of no-type error.
+3. Improvement: throw `RangeError` when you get/set `private` or `protected` properties and methods out of the class instead of no-type error.
 
 ### version 0.1.0
-1. Added `jpp.class` function to create powerful classes with private & protected properties and methods.
+1. Added `jpp.class` function to create powerful classes with `private` & `protected` properties and methods. And you can use `extends` property for inheritance.

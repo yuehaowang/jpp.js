@@ -1,16 +1,91 @@
 var jpp = {};
 
-(function (exports) {
-	function extendClass (derivedClass, baseClass, arg) {
-		var k = null, proto = derivedClass.constructor.prototype, emptyObject = {};
+(function (exports){
+	function Detector () {
+		throw new ReferenceError("jpp.Detector cannot be instantiated.");
+	}
 
-		if (typeof arg == "undefined" || !arg) {
-			arg = [];
+	Detector.is = function (o, type) {
+		if (typeof type == "function") {
+			return Detector.instanceOf(o, type);
+		} else if (typeof type == "string") {
+			return typeof o == type;
+		} else if (type === null) {
+			return o === type;
 		}
+
+		return false;
+	};
+
+	Detector.isAvailable = function (o) {
+		return (typeof o != "undefined" && o !== null);
+	};
+
+	Detector.instanceOf = function (o, type) {
+		function loop (dataList) {
+			if (Detector.is(dataList, Array)) {
+				for (var k = 0, l = dataList.length; k < l; k++) {
+					if (l <= 0) {
+						return false;
+					}
+
+					var item = dataList[k];
+
+					if (o instanceof item.classConstructor) {
+						return true;
+					} else {
+						loop(item.derivedClassList);
+					}
+				}
+			}
+
+			return false;
+		}
+
+		var list = type._jpp_derivedClassDataList;
+
+		if (list) {
+			if (o instanceof list.classConstructor) {
+				return true;
+			} else {
+				return loop(list.derivedClassList);
+			}
+		}
+
+		return o instanceof type;
+	};
+
+	exports.Detector = Detector;
+})(jpp);
+
+(function (exports) {
+	var detector = exports.Detector;
+
+	function extendClass (derivedClass, baseClass) {
+		var k = null,
+		dc = derivedClass.constructor,
+		proto = dc.prototype,
+		emptyObject = {};
 		
 		for (k in proto) {
 			emptyObject[k] = 1;
 		}
+
+		if (!detector.isAvailable(baseClass._jpp_derivedClassDataList)) {
+			baseClass._jpp_derivedClassDataList = {
+				classConstructor : baseClass,
+				derivedClassList : new Array()
+			};
+		}
+
+		if (!detector.isAvailable(dc._jpp_derivedClassDataList)) {
+			dc._jpp_derivedClassDataList = {
+				classConstructor : dc,
+				derivedClassList : new Array()
+			};
+		}
+
+		baseClass._jpp_derivedClassDataList.derivedClassList.push(dc._jpp_derivedClassDataList);
 
 		for (k in baseClass.prototype) {
 			if (!emptyObject[k] && !isInArray(baseClass._jpp_privateList, k)) {
@@ -18,17 +93,19 @@ var jpp = {};
 			}
 		}
 
-		derivedClass.constructor._jpp_privateList = baseClass._jpp_privateList;
-		derivedClass.constructor._jpp_protectedList = baseClass._jpp_protectedList;
-		derivedClass.constructor._jpp_publicList = baseClass._jpp_publicList;
+		dc._jpp_privateList = baseClass._jpp_privateList;
+		dc._jpp_protectedList = baseClass._jpp_protectedList;
+		dc._jpp_publicList = baseClass._jpp_publicList;
 		
 		baseClass._jpp_isOnExtendClass = true;
-		baseClass.apply(derivedClass, arg);
+		baseClass._jpp_currentDerivedClass = derivedClass;
+		baseClass.apply(derivedClass, []);
+		baseClass._jpp_currentDerivedClass = null;
 		baseClass._jpp_isOnExtendClass = false;
 	}
 
 	function isInArray (array, what) {
-		if (typeof array == "undefined" || !array) {
+		if (!detector.isAvailable(array)) {
 			return false;
 		}
 
@@ -59,20 +136,16 @@ var jpp = {};
 			propertiesAndMethodsList = [];
 
 			if (ext) {
-				if (ext.arguments == exports.ARGUMENTS) {
-					ext.arguments = arguments;
-				}
-
-				extendClass(s, ext.baseClass, ext.arguments);
+				extendClass(s, ext);
 			}
 
-			if (typeof Class._jpp_privateList == "undefined" || !Class._jpp_privateList) {
+			if (!detector.isAvailable(Class._jpp_privateList)) {
 				Class._jpp_privateList = new Array();
 			}
-			if (typeof Class._jpp_protectedList == "undefined" || !Class._jpp_protectedList) {
+			if (!detector.isAvailable(Class._jpp_protectedList)) {
 				Class._jpp_protectedList = new Array();
 			}
-			if (typeof Class._jpp_publicList == "undefined" || !Class._jpp_publicList) {
+			if (!detector.isAvailable(Class._jpp_publicList)) {
 				Class._jpp_publicList = new Array();
 			}
 
@@ -107,7 +180,7 @@ var jpp = {};
 				}
 			}
 
-			if (typeof s._jpp_propertyAndMethodStorage == "undefined" || !s._jpp_propertyAndMethodStorage) {
+			if (!detector.isAvailable(s._jpp_propertyAndMethodStorage)) {
 				s._jpp_propertyAndMethodStorage = {};
 			}
 
@@ -143,7 +216,7 @@ var jpp = {};
 
 					Object.defineProperty(s, o.name, {
 						get : function () {
-							if (typeof s._jpp_isCalledInClass == "undefined" || !s._jpp_isCalledInClass) {
+							if (!detector.isAvailable(s._jpp_isCalledInClass)) {
 								throw new RangeError(name + " is " + flag + ", you cannot get it out of the class.");
 							}
 
@@ -151,7 +224,7 @@ var jpp = {};
 						},
 
 						set : function (v) {
-							if (typeof s._jpp_isCalledInClass == "undefined" || !s._jpp_isCalledInClass) {
+							if (!detector.isAvailable(s._jpp_isCalledInClass)) {
 								throw new RangeError(name + " is " + flag + ", you cannot set it out of the class.");
 							}
 
@@ -162,7 +235,13 @@ var jpp = {};
 				}
 			});
 
-			s._jpp_constructor.apply(s, arguments);
+			if (detector.is(s._jpp_constructor, "function")) {
+				if (!Class._jpp_isOnExtendClass) {
+					s._jpp_constructor.apply(s, arguments);
+				} else {
+					Class._jpp_currentDerivedClass.super = s._jpp_constructor;
+				}
+			}
 		}
 
 		return Class;
@@ -171,4 +250,7 @@ var jpp = {};
 	exports.class = createClass;
 })(jpp);
 
-jpp.ARGUMENTS = "_jpp_arguments";
+
+(function (exports) {
+	exports.ARGUMENTS = "_jpp_arguments";
+})(jpp);

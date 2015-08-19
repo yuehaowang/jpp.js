@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>detector</title>
+	<script type="text/javascript" src="../jpp-0.2.0.js"></script>
+</head>
+<body>
+<script type="text/javascript">
+var People = jpp.class({
+	public : {
+		name : null,
+		
+		constructor : function (name) {
+			this.name = name;
+		}
+	}
+});
+
+var Student = jpp.class({
+	extends : People,
+	public : {
+		nickname : null,
+
+		constructor : function (name, nickname) {
+			this.super(name);
+
+			if (nickname) {
+				this.nickname = nickname;
+			}
+		}
+	}
+});
+
+var Cat = jpp.class({
+	public : {
+		color : null,
+
+		constructor : function (color) {
+			this.color = "white";
+		}
+	}
+});
+
+var yuehao = new Student("Yuehao Wang", 54324534321, "Super-programming Man");
+
+// result: true
+alert(jpp.Detector.is(yuehao, Student));
+// result: true
+alert(jpp.Detector.is(yuehao, People));
+// result: false
+alert(jpp.Detector.is(yuehao, Cat));
+// result: true
+alert(jpp.Detector.is([], Array));
+// result: true
+alert(jpp.Detector.is(true, "boolean"));
+// result: false
+alert(jpp.Detector.is(123, "string"));
+// result: true
+alert(jpp.Detector.is(null, null));
+</script>
+</body>
+</html>
