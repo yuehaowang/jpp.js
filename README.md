@@ -21,17 +21,7 @@ Second, copy jpp-a.b.c.js to your project directory and import the js file, then
 
 ## A live example
 The example below is to show how to create a powerful `class` which is enabled to define `private`, `protected` and `public` properties and methods:
-```html
-<!DOCTYPE html>
-<html>
-<head>
-	<title>jpp demo</title>
-	<script type="text/javascript" src="./jpp.js"></script>
-</head>
-<body>
-<input onclick="testPeople()" type="button" value="testPeople()" />
-<input onclick="testStudent()" type="button" value="testStudent()" />
-<script type="text/javascript">
+```javascript
 var People = jpp.class({
 	extends : null,
 	private : {
@@ -47,6 +37,7 @@ var People = jpp.class({
 		lastName : null,
 		age : null,
 		birthday : null,
+		occupation : null,
 		
 		constructor : function (name, id) {
 			if (name) {
@@ -78,38 +69,18 @@ var People = jpp.class({
 		findHobby : function () {
 			return this.hobby;
 		}
-	}
-});
-
-var Student = jpp.class({
-	extends : {
-		baseClass : People,
-		arguments : jpp.ARGUMENTS
 	},
-	public : {
-		nickname : null,
-
-		constructor : function (name, id, nickname) {
-			if (name) {
-				var nameArray = name.split(" ");
-
-				this.firstName = nameArray[0];
-				this.lastName = nameArray[1];
-			}
-
-			if (id) {
-				this.id = id;
-			}
-
-			if (nickname) {
-				this.nickname = nickname;
-			}
-		},
+	static : {
+		OCCUPATION_PROGRAMMER : "programmer",
+		OCCUPATION_ARTIST : "artist",
+		OCCUPATION_MUSICIAN : "musician",
+		OCCUPATION_STUDENT : "student"
 	}
 });
 
 function testPeople () {
 	var peter = new People("Peter Wong", 543232123565);
+	peter.occupation = People.OCCUPATION_PROGRAMMER;
 	
 	peter.setBirthday("19980727");
 
@@ -121,31 +92,13 @@ function testPeople () {
 	alert(peter.askForId());
 	// result: null
 	alert(peter.findHobby());
+	// result: programmer
+	alert(peter.occupation);
 	// error
 	alert(peter.id);
 }
 
-function testStudent () {
-	var yuehao = new Student("Yuehao Wang", 54324534321, "Super-programming Man");
-	
-	yuehao.setBirthday("19990727");
-
-	// result: Wang
-	console.log(yuehao.lastName);
-	// result: Super-programming Man
-	console.log(yuehao.nickname);
-	// result: 19990727
-	console.log(yuehao.getBirthday());
-	// result: 51092028
-	console.log(yuehao.askForId());
-	// result: undefined
-	console.log(yuehao.hobby);
-	// error
-	console.log(yuehao.money);
-}
-</script>
-</body>
-</html>
+testPeople();
 ```
 
 ## Browser compatibility
@@ -178,7 +131,9 @@ If you find the library has some bugs or you have any questions or advice, pleas
 
 ## Changelog
 
+### version 0.1.1
+1. Added `static` property for `jpp.class` to add static properties or methods to classes.
+3. Improvement: throw `RangeError` when you get/set private or protected properties and methods out of the class instead of no-type error.
+
 ### version 0.1.0
-1. Add `jpp.class` function to create a powerful class (with private & protected properties and methods).
-2. Choose MIT License for jpp.js.
-3. Write README.md for getting started.
+1. Added `jpp.class` function to create powerful classes with private & protected properties and methods.
