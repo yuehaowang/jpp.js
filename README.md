@@ -127,6 +127,10 @@ If you find the library has some bugs or you have any questions or advice, pleas
 
 ## Changelog
 
+### version 0.3.0
+1. Bugfix: `private` & `protected` are invalid because of the wrong condition in `if () {...}`.
+2. Added: `jpp.overload` function to create a function which is enabled to execute different codes in a function because of different arguments.
+
 ### version 0.2.0
 1. Added `jpp.Detector` function to determine if a object is available or if a object is a instance of the class or a object's type is one of basic type (`string`, `object`, `function`, `number`, `boolean`, etc).
 2. Added `super` method for classes which are created by `jpp.class`. Using this method will call base class' constructor.
