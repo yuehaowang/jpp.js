@@ -249,8 +249,3 @@ var jpp = {};
 
 	exports.class = createClass;
 })(jpp);
-
-
-(function (exports) {
-	exports.ARGUMENTS = "_jpp_arguments";
-})(jpp);
