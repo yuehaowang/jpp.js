@@ -63,24 +63,12 @@ var People = jpp.class({
 });
 
 var Student = jpp.class({
-	extends : {
-		baseClass : People,
-		arguments : jpp.ARGUMENTS
-	},
+	extends : People,
 	public : {
 		nickname : null,
 
 		constructor : function (name, id, nickname) {
-			if (name) {
-				var nameArray = name.split(" ");
-
-				this.firstName = nameArray[0];
-				this.lastName = nameArray[1];
-			}
-
-			if (id) {
-				this.id = id;
-			}
+			this.super(name, id);
 
 			if (nickname) {
 				this.nickname = nickname;
@@ -91,28 +79,24 @@ var Student = jpp.class({
 	}
 });
 
-function testStudent () {
-	var yuehao = new Student("Yuehao Wang", 54324534321, "Super-programming Man");
-	
-	yuehao.setBirthday("19990727");
+var yuehao = new Student("Yuehao Wang", 54324534321, "Super-programming Man");
 
-	// result: Wang
-	alert(yuehao.lastName);
-	// result: Super-programming Man
-	alert(yuehao.nickname);
-	// result: 19990727
-	alert(yuehao.getBirthday());
-	// result: 51092028
-	alert(yuehao.askForId());
-	// result: undefined
-	alert(yuehao.hobby);
-	// result: student
-	alert(yuehao.occupation);
-	// error
-	alert(yuehao.money);
-}
+yuehao.setBirthday("19990727");
 
-testStudent();
+// result: Wang
+alert(yuehao.lastName);
+// result: Super-programming Man
+alert(yuehao.nickname);
+// result: 19990727
+alert(yuehao.getBirthday());
+// result: 51092028
+alert(yuehao.askForId());
+// result: undefined
+alert(yuehao.hobby);
+// result: student
+alert(yuehao.occupation);
+// error
+alert(yuehao.money);
 </script>
 </body>
 </html>

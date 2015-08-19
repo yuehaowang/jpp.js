@@ -62,27 +62,23 @@ var People = jpp.class({
 	}
 });
 
-function testPeople () {
-	var peter = new People("Peter Wong", 543232123565);
-	peter.occupation = People.OCCUPATION_PROGRAMMER;
-	
-	peter.setBirthday("19980727");
+var peter = new People("Peter Wong", 543232123565);
+peter.occupation = People.OCCUPATION_PROGRAMMER;
 
-	// result: Peter
-	alert(peter.firstName);
-	// result: 19990727
-	alert(peter.getBirthday());
-	// result: 51092028
-	alert(peter.askForId());
-	// result: null
-	alert(peter.findHobby());
-	// result: programmer
-	alert(peter.occupation);
-	// error
-	alert(peter.id);
-}
+peter.setBirthday("19980727");
 
-testPeople();
+// result: Peter
+alert(peter.firstName);
+// result: 19990727
+alert(peter.getBirthday());
+// result: 51092028
+alert(peter.askForId());
+// result: null
+alert(peter.findHobby());
+// result: programmer
+alert(peter.occupation);
+// error
+alert(peter.id);
 </script>
 </body>
 </html>
