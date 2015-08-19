@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>create class</title>
+	<script type="text/javascript" src="../jpp-0.2.0.js"></script>
+</head>
+<body>
+<script type="text/javascript">
+var People = jpp.class({
+	extends : null,
+	private : {
+		id : null,
+		hobby : null
+	},
+	protected : {
+		money : null,
+		phoneNumber : null
+	},
+	public : {
+		firstName : null,
+		lastName : null,
+		age : null,
+		birthday : null,
+		occupation : null,
+		
+		constructor : function (name, id) {
+			if (name) {
+				var nameArray = name.split(" ");
+
+				this.firstName = nameArray[0];
+				this.lastName = nameArray[1];
+			}
+
+			if (id) {
+				this.id = id;
+			}
+		},
+
+		setBirthday : function (date) {
+			if (date) {
+				this.birthday = date;
+			}
+		},
+
+		getBirthday : function () {
+			return this.birthday;
+		},
+
+		askForId : function () {
+			return this.id;
+		},
+
+		findHobby : function () {
+			return this.hobby;
+		}
+	},
+	static : {
+		OCCUPATION_PROGRAMMER : "programmer",
+		OCCUPATION_ARTIST : "artist",
+		OCCUPATION_MUSICIAN : "musician",
+		OCCUPATION_STUDENT : "student"
+	}
+});
+
+function testPeople () {
+	var peter = new People("Peter Wong", 543232123565);
+	peter.occupation = People.OCCUPATION_PROGRAMMER;
+	
+	peter.setBirthday("19980727");
+
+	// result: Peter
+	alert(peter.firstName);
+	// result: 19990727
+	alert(peter.getBirthday());
+	// result: 51092028
+	alert(peter.askForId());
+	// result: null
+	alert(peter.findHobby());
+	// result: programmer
+	alert(peter.occupation);
+	// error
+	alert(peter.id);
+}
+
+testPeople();
+</script>
+</body>
+</html>
