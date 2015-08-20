@@ -3,6 +3,7 @@
 <head>
 	<title>overload</title>
 	<script type="text/javascript" src="../jpp-0.3.0.js"></script>
+	<script type="text/javascript" src="../src/overload.js"></script>
 </head>
 <body>
 <script type="text/javascript">
@@ -11,7 +12,9 @@ var about = jpp.overload(["number", "string", Array], function (id, name, data) 
 }).overload(["string", "number", Array], function (name, id, data) {
 	return name + " " + id + " " + data.toString();
 }).overload([Array, "number", "string"], function (data, id, name) {
-	return data.toString() + " " + name + " " + id;
+	return data.toString() + " " + id + " " + name;
+}).overload(["number", "string"], function (id, name) {
+	return id + " " + name;
 });
 
 // result: 2212345 TonyStark ironMan
@@ -20,6 +23,8 @@ alert(about(2212345, "TonyStark", ["ironMan"]));
 alert(about("TonyStark", 234321, ["millionaire"]));
 // result: genius 55675 TonyStark
 alert(about(["genius"], 55675, "TonyStark"));
+// result: 55675 TonyStark
+alert(about(55675, "TonyStark"));
 // error
 alert(33455432, about(["genius"], "TonyStark"));
 </script>

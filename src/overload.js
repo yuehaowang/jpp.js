@@ -1,5 +1,5 @@
 (function (exports) {
-	var detector = jpp.Detector;
+	var detector = exports.Detector;
 
 	function overload (argTypeList, func) {
 		function overloadFunc () {
@@ -7,6 +7,10 @@
 
 			for (var j = 0, s = list.length; j < s; j++) {
 				var item = list[j], match = 0;
+
+				if (l != item.argTypeList.length) {
+					continue;
+				}
 
 				for (var i = 0; i < l; i++) {
 					var o = arguments[i];
