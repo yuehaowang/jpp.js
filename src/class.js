@@ -11,14 +11,14 @@
 			emptyObject[k] = 1;
 		}
 
-		if (!detector.isAvailable(baseClass._jpp_derivedClassDataList)) {
+		if (detector.is(s._jpp_isCalledInClass, "undefined") || !s._jpp_isCalledInClass) {
 			baseClass._jpp_derivedClassDataList = {
 				classConstructor : baseClass,
 				derivedClassList : new Array()
 			};
 		}
 
-		if (!detector.isAvailable(dc._jpp_derivedClassDataList)) {
+		if (detector.is(s._jpp_isCalledInClass, "undefined") || !s._jpp_isCalledInClass) {
 			dc._jpp_derivedClassDataList = {
 				classConstructor : dc,
 				derivedClassList : new Array()

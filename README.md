@@ -126,6 +126,10 @@ If you find the library has some bugs or you have any questions or advice, pleas
 
 ## Changelog
 
+### version 0.3.1
+1. Bugfix: `private` & `protected` properties and methods cannot be used in inner methods of the class.
+2. Bugfix: when a overload function A is called, if A accepts less arguments than a former overload function B whose first few arguments' type are similar to A's , the former function B will be called instead of A.
+
 ### version 0.3.0
 1. Bugfix: `private` & `protected` are invalid because of the wrong condition in `if () {...}`.
 2. Added: `jpp.overload` function to create a function which is enabled to execute different codes in a function because of different arguments.

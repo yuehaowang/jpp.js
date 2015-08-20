@@ -216,7 +216,7 @@ var jpp = {};
 
 					Object.defineProperty(s, o.name, {
 						get : function () {
-							if (!detector.is(s._jpp_isCalledInClass, "undefined") || !s._jpp_isCalledInClass) {
+							if (detector.is(s._jpp_isCalledInClass, "undefined") || !s._jpp_isCalledInClass) {
 								throw new RangeError(name + " is " + flag + ", you cannot get it out of the class.");
 							}
 
@@ -224,7 +224,7 @@ var jpp = {};
 						},
 
 						set : function (v) {
-							if (!detector.is(s._jpp_isCalledInClass, "undefined") || !s._jpp_isCalledInClass) {
+							if (detector.is(s._jpp_isCalledInClass, "undefined") || !s._jpp_isCalledInClass) {
 								throw new RangeError(name + " is " + flag + ", you cannot set it out of the class.");
 							}
 
@@ -251,7 +251,7 @@ var jpp = {};
 })(jpp);
 
 (function (exports) {
-	var detector = jpp.Detector;
+	var detector = exports.Detector;
 
 	function overload (argTypeList, func) {
 		function overloadFunc () {
@@ -259,6 +259,10 @@ var jpp = {};
 
 			for (var j = 0, s = list.length; j < s; j++) {
 				var item = list[j], match = 0;
+
+				if (l != item.argTypeList.length) {
+					continue;
+				}
 
 				for (var i = 0; i < l; i++) {
 					var o = arguments[i];
