@@ -63,14 +63,13 @@ var People = jpp.class({
 });
 
 var Student = jpp.class({
-	extends : {
-		baseClass : People,
-		arguments : jpp.ARGUMENTS
-	},
+	extends : People,
 	public : {
 		nickname : null,
 
 		constructor : function (name, id, nickname) {
+			this.super(name, id);
+
 			if (name) {
 				var nameArray = name.split(" ");
 
