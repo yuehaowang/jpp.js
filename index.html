@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <title>Jpp.js by yuehaowang</title>
+  </head>
+
+  <body>
+    <header>
+      <div class="inner">
+        <h1>Jpp.js</h1>
+        <h2>Jpp.js is a library to extend some useful functions for JavaScript. The meaning of jpp is JavaScript plus plus</h2>
+        <a href="https://github.com/yuehaowang/jpp.js" class="button"><small>View project on</small> GitHub</a>
+      </div>
+    </header>
+
+    <div id="content-wrapper">
+      <div class="inner clearfix">
+        <section id="main-content">
+          <h1>
+<a id="jppjs" class="anchor" href="#jppjs" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>jpp.js</h1>
+
+<hr>
+
+<h2>
+<a id="whats-jppjs" class="anchor" href="#whats-jppjs" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>What's jpp.js</h2>
+
+<p>Jpp.js is a library to extend some useful functions such as create a powerful <code>class</code> (with <code>private</code> &amp; <code>protected</code> &amp; <code>public</code> &amp; <code>static</code> properties and methods) for JavaScript. The meaning of jpp is JavaScript plus plus. </p>
+
+<h2>
+<a id="how-to-use-jppjs" class="anchor" href="#how-to-use-jppjs" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>How to use jpp.js</h2>
+
+<p>First, you need to get jpp.js.</p>
+
+<p><strong>With Git:</strong></p>
+
+<pre><code>$ git clone git@github.com:yuehaowang/jpp.js.git
+</code></pre>
+
+<p><strong>Without Git:</strong></p>
+
+<p>The url to download the library is: <a href="https://github.com/yuehaowang/jpp.js/archive/master.zip">https://github.com/.../master.zip</a></p>
+
+<p>Second, copy jpp-a.b.c.js to your project directory and import the js file, then you can use jpp. It's so easy, isn't it?</p>
+
+<h2>
+<a id="a-live-example" class="anchor" href="#a-live-example" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>A live example</h2>
+
+<p>The example below is to show how to create a powerful <code>class</code> which is enabled to define <code>private</code>, <code>protected</code> and <code>public</code> properties and methods:</p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> People <span class="pl-k">=</span> <span class="pl-smi">jpp</span>.<span class="pl-en">class</span>({
+    extends <span class="pl-k">:</span> <span class="pl-c1">null</span>,
+    private <span class="pl-k">:</span> {
+        id <span class="pl-k">:</span> <span class="pl-c1">null</span>,
+        hobby <span class="pl-k">:</span> <span class="pl-c1">null</span>
+    },
+    protected <span class="pl-k">:</span> {
+        money <span class="pl-k">:</span> <span class="pl-c1">null</span>,
+        phoneNumber <span class="pl-k">:</span> <span class="pl-c1">null</span>
+    },
+    public <span class="pl-k">:</span> {
+        firstName <span class="pl-k">:</span> <span class="pl-c1">null</span>,
+        lastName <span class="pl-k">:</span> <span class="pl-c1">null</span>,
+        age <span class="pl-k">:</span> <span class="pl-c1">null</span>,
+        birthday <span class="pl-k">:</span> <span class="pl-c1">null</span>,
+        occupation <span class="pl-k">:</span> <span class="pl-c1">null</span>,
+
+        <span class="pl-en">constructor</span> <span class="pl-k">:</span> <span class="pl-k">function</span> (<span class="pl-smi">name</span>, <span class="pl-smi">id</span>) {
+            <span class="pl-k">if</span> (name) {
+                <span class="pl-k">var</span> nameArray <span class="pl-k">=</span> <span class="pl-smi">name</span>.<span class="pl-c1">split</span>(<span class="pl-s"><span class="pl-pds">"</span> <span class="pl-pds">"</span></span>);
+
+                <span class="pl-v">this</span>.<span class="pl-smi">firstName</span> <span class="pl-k">=</span> nameArray[<span class="pl-c1">0</span>];
+                <span class="pl-v">this</span>.<span class="pl-smi">lastName</span> <span class="pl-k">=</span> nameArray[<span class="pl-c1">1</span>];
+            }
+
+            <span class="pl-k">if</span> (id) {
+                <span class="pl-v">this</span>.<span class="pl-c1">id</span> <span class="pl-k">=</span> id;
+            }
+        },
+
+        <span class="pl-en">setBirthday</span> <span class="pl-k">:</span> <span class="pl-k">function</span> (<span class="pl-smi">date</span>) {
+            <span class="pl-k">if</span> (date) {
+                <span class="pl-v">this</span>.<span class="pl-smi">birthday</span> <span class="pl-k">=</span> date;
+            }
+        },
+
+        <span class="pl-en">getBirthday</span> <span class="pl-k">:</span> <span class="pl-k">function</span> () {
+            <span class="pl-k">return</span> <span class="pl-v">this</span>.<span class="pl-smi">birthday</span>;
+        },
+
+        <span class="pl-en">askForId</span> <span class="pl-k">:</span> <span class="pl-k">function</span> () {
+            <span class="pl-k">return</span> <span class="pl-v">this</span>.<span class="pl-c1">id</span>;
+        },
+
+        <span class="pl-en">findHobby</span> <span class="pl-k">:</span> <span class="pl-k">function</span> () {
+            <span class="pl-k">return</span> <span class="pl-v">this</span>.<span class="pl-smi">hobby</span>;
+        }
+    },
+    static <span class="pl-k">:</span> {
+        OCCUPATION_PROGRAMMER <span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>programmer<span class="pl-pds">"</span></span>,
+        OCCUPATION_ARTIST <span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>artist<span class="pl-pds">"</span></span>,
+        OCCUPATION_MUSICIAN <span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>musician<span class="pl-pds">"</span></span>,
+        OCCUPATION_STUDENT <span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>student<span class="pl-pds">"</span></span>
+    }
+});
+
+<span class="pl-k">var</span> peter <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">People</span>(<span class="pl-s"><span class="pl-pds">"</span>Peter Wong<span class="pl-pds">"</span></span>, <span class="pl-c1">543232123565</span>);
+<span class="pl-smi">peter</span>.<span class="pl-smi">occupation</span> <span class="pl-k">=</span> <span class="pl-smi">People</span>.<span class="pl-c1">OCCUPATION_PROGRAMMER</span>;
+
+<span class="pl-smi">peter</span>.<span class="pl-en">setBirthday</span>(<span class="pl-s"><span class="pl-pds">"</span>19980727<span class="pl-pds">"</span></span>);
+
+<span class="pl-c">// result: Peter</span>
+<span class="pl-en">alert</span>(<span class="pl-smi">peter</span>.<span class="pl-smi">firstName</span>);
+<span class="pl-c">// result: 19990727</span>
+<span class="pl-en">alert</span>(<span class="pl-smi">peter</span>.<span class="pl-en">getBirthday</span>());
+<span class="pl-c">// result: 51092028</span>
+<span class="pl-en">alert</span>(<span class="pl-smi">peter</span>.<span class="pl-en">askForId</span>());
+<span class="pl-c">// result: null</span>
+<span class="pl-en">alert</span>(<span class="pl-smi">peter</span>.<span class="pl-en">findHobby</span>());
+<span class="pl-c">// result: programmer</span>
+<span class="pl-en">alert</span>(<span class="pl-smi">peter</span>.<span class="pl-smi">occupation</span>);
+<span class="pl-c">// error</span>
+<span class="pl-en">alert</span>(<span class="pl-smi">peter</span>.<span class="pl-c1">id</span>);</pre></div>
+
+<h2>
+<a id="browser-compatibility" class="anchor" href="#browser-compatibility" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Browser compatibility</h2>
+
+<p>As <code>Object.defineProperty</code> is used in jpp.js, so there are some problems about compatibility. Here is the table to tell you the compatibility situation:</p>
+
+<p><strong><em>Desktop</em></strong></p>
+
+<table>
+<thead>
+<tr>
+<th>Firefox</th>
+<th>Google Chrome</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>4.0</td>
+<td>5</td>
+<td>9</td>
+<td>11.6</td>
+<td>5.1</td>
+</tr>
+</tbody>
+</table>
+
+<p><strong><em>Mobile</em></strong></p>
+
+<table>
+<thead>
+<tr>
+<th>Firefox Mobile</th>
+<th>Android</th>
+<th>IE Mobile</th>
+<th>Opera Mobile</th>
+<th>Safari Mobile</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>4.0</td>
+<td>Yes</td>
+<td>9</td>
+<td>11.5</td>
+<td>Yes</td>
+</tr>
+</tbody>
+</table>
+
+<p><strong><em>From:</em></strong> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty#Browser_compatibility">https://developer.mozilla.org/.../defineProperty#Browser_compatibility</a></p>
+
+<h2>
+<a id="documentation" class="anchor" href="#documentation" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Documentation</h2>
+
+<p>The documentation will be released when the formal version is released. Stay tuned!~</p>
+
+<h2>
+<a id="support" class="anchor" href="#support" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Support</h2>
+
+<p>If you find the library has some bugs or you have any questions or advice, please let me know:</p>
+
+<blockquote>
+<p><strong>My email:</strong> <a href="mailto:wangyuehao1999@gmail.com">wangyuehao1999@gmail.com</a></p>
+
+<p><strong>My twitter:</strong> <a href="twitter.com/yuehaowang">twitter.com/yuehaowang</a></p>
+</blockquote>
+
+<h2>
+<a id="changelog" class="anchor" href="#changelog" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Changelog</h2>
+
+<h3>
+<a id="version-031" class="anchor" href="#version-031" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>version 0.3.1</h3>
+
+<ol>
+<li>Bugfix: <code>private</code> &amp; <code>protected</code> properties and methods cannot be used in inner methods of the class.</li>
+<li>Bugfix: when a overloaded function A is called, if A accepts less arguments than a former overloaded function B whose first few arguments' type are similar to A's , the former function B will be called instead of A.</li>
+</ol>
+
+<h3>
+<a id="version-030" class="anchor" href="#version-030" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>version 0.3.0</h3>
+
+<ol>
+<li>Bugfix: <code>private</code> &amp; <code>protected</code> are invalid because of the wrong condition in <code>if () {...}</code>.</li>
+<li>Added: <code>jpp.overload</code> function to create a function which is enabled to execute different codes in a function because of different arguments.</li>
+</ol>
+
+<h3>
+<a id="version-020" class="anchor" href="#version-020" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>version 0.2.0</h3>
+
+<ol>
+<li>Added <code>jpp.Detector</code> function to determine if a object is available or if a object is a instance of the class or a object's type is one of basic type (<code>string</code>, <code>object</code>, <code>function</code>, <code>number</code>, <code>boolean</code>, etc).</li>
+<li>Added <code>super</code> method for classes which are created by <code>jpp.class</code>. Using this method will call base class' constructor.</li>
+<li>Improvement: <code>extends</code> property is used to be a <code>Object</code> containing <code>baseClass</code> property and <code>arguments</code> property but now this property is given the base class.</li>
+</ol>
+
+<h3>
+<a id="version-011" class="anchor" href="#version-011" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>version 0.1.1</h3>
+
+<ol>
+<li>Added <code>static</code> property for <code>jpp.class</code> to add static properties or methods to classes.</li>
+<li>Improvement: throw <code>RangeError</code> when you get/set <code>private</code> or <code>protected</code> properties and methods out of the class instead of no-type error.</li>
+</ol>
+
+<h3>
+<a id="version-010" class="anchor" href="#version-010" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>version 0.1.0</h3>
+
+<ol>
+<li>Added <code>jpp.class</code> function to create powerful classes with <code>private</code> &amp; <code>protected</code> properties and methods. And you can use <code>extends</code> property for inheritance.</li>
+</ol>
+        </section>
+
+        <aside id="sidebar">
+          <a href="https://github.com/yuehaowang/jpp.js/zipball/master" class="button">
+            <small>Download</small>
+            .zip file
+          </a>
+          <a href="https://github.com/yuehaowang/jpp.js/tarball/master" class="button">
+            <small>Download</small>
+            .tar.gz file
+          </a>
+
+          <p class="repo-owner"><a href="https://github.com/yuehaowang/jpp.js"></a> is maintained by <a href="https://github.com/yuehaowang">yuehaowang</a>.</p>
+
+          <p>This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the Architect theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.</p>
+        </aside>
+      </div>
+    </div>
+
+  
+  </body>
+</html>
